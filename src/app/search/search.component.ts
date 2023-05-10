@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {Component, EventEmitter, Output} from '@angular/core';
+import {FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -7,8 +8,16 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  nameControl = new FormControl('');
+  @Output() searchEvent = new EventEmitter<string>();
 
-  onSubmit(){
+  myGroup = new FormGroup({
+    nameControl:new FormControl('')}
+  );
+  constructor(private router: Router) {}
+
+  onSubmit() {
+    this.router.navigate(['/search', this.myGroup.controls.nameControl.value]);
+    // @ts-ignore
+    this.searchEvent.emit(this.myGroup.controls.nameControl.value);
   }
 }

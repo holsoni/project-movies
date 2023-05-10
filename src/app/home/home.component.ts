@@ -1,43 +1,25 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FilmsService} from "../../service/films.service";
+import {UserService} from "../../service/users.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   films:any[] = [];
   HTMLSelectElement: any;
+  cardView = false;
 
-  constructor(private filmService:FilmsService) {
+  constructor(private filmService:FilmsService,private userService:UserService) {
 
   }
 
   ngOnInit(){
-    this.filmService.loadFilms()?.subscribe((data) => this.films = data);
+    this.filmService.getAllFilms()?.subscribe((data) => this.films = data);
     console.log(this.films);
+    this.userService.getCurrentUser();
   }
 
-  sortMovies(sortBy: string) {
-    switch(sortBy) {
-      case 'name':
-        this.films.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case 'year':
-        this.films.sort((a, b) => a.year - b.year);
-        break;
-      case 'created':
-        this.films.sort((a, b) => new Date(a.created).getTime() - new Date(b.created).getTime());
-        break;
-      default:
-        // default sorting is by name
-        this.films.sort((a, b) => a.name.localeCompare(b.name));
-    }
-  }
-
-
-  addToFavorites(film: any) {
-
-  }
 }

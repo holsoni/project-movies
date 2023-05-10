@@ -1,32 +1,6 @@
-<div>
+<div fxLayout="column">
   <app-search ></app-search>
-  <div>
-    <div>
-      <button>Change view</button>
-    </div>
-    <div>
-      <label for="sortselected">Sort by:</label>
-      <select id ="sortselected" #sortselect (change)="sortMovies(sortselect.value)">>
-        <option value="title">Alphabetically</option>
-        <option value="releaseYear">Release year</option>
-        <option value="creationDate">Date created</option>
-      </select>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 mb-3" *ngFor="let film of films">
-        <div class="card">
-          <img src="{{ film.cover }}" class="card-img-top" alt="{{ film.name }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ film.name }}</h5>
-            <p class="card-text">{{ film.year }}</p>
-            <button type="button" class="btn btn-outline-danger btn-sm" (click)="addToFavorites(film)">
-              <i class="bi bi-heart"></i> Add to Favorites
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-films-view [films]="films" ></app-films-view>
+
+
 </div>

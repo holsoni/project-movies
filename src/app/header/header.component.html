@@ -1,16 +1,19 @@
-<header fxLayout = "row" fxLayoutAlign="space-between" >
+<header fxLayout = "row" fxLayoutAlign="space-between center" >
   <div fxLayout = "row">
     <h1 >
       MOVIES
     </h1>
     <div class="menu" fxLayout = "row" fxLayoutAlign = " center">
       <div routerLink="/films">Movies</div>
-      <div routerLink="/favorite">Favorites</div>
+      <div *ngIf="isLoggedIn()" routerLink="/favorite">Favorites</div>
       <div routerLink="/search">Search</div>
+      <div *ngIf="isAdminOrManager()" routerLink="/filmManagement">FilmManagement</div>
+      <div *ngIf="isAdmin()" routerLink="/userManagement">UserManagement</div>
     </div>
   </div>
   <div fxLayout="row">
-    <button>Login</button>
+    <button *ngIf="!isLoggedIn()" routerLink="/login">Login</button>
+    <button *ngIf="isLoggedIn()" (click)="logOut()">Logout</button>
     <button>Light</button>
 
   </div>

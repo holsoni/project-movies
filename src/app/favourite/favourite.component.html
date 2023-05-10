@@ -1,1 +1,4 @@
-<p>favourite works!</p>
+<div fxLayout="column">
+  <h1>Favorites</h1>
+  <app-films-view [films]="films" (event)="reload()"></app-films-view>
+</div>

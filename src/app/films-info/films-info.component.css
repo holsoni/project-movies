@@ -1,0 +1,11 @@
+img{
+  height:100px;
+  width:60px;
+}
+
+.main{
+  margin-top:30px;
+}
+.mat-mdc-header-cell{
+  backgroun-color: red;
+}

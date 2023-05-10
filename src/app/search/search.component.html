@@ -1,10 +1,10 @@
-<div class="search">
+<div class="search" fxLayout ='column' fxLayoutAlign="center space-between">
   <div fxLayout="column" fxLayoutAlign="center center">
     <h1>Welcome.</h1>
     <div class="text">Millions of movies to discover!</div>
   </div>
-  <div class="form">
-    <input fxFlex="90"type="text" formControlName="nameControl" placeholder="Search for a movie you like...">
-    <button type="submit">Search</button>
+  <div class="form" [formGroup]="myGroup">
+    <input fxFlex="90" type="text" formControlName="nameControl" placeholder="Search for a movie you like...">
+    <button (click)="onSubmit()">Search</button>
   </div>
 </div>
